@@ -148,7 +148,7 @@ const Sidebar = () => {
           <div className="container p-4 mx-auto">
             {activeSection === 'base' && <HomePage />}
             {activeSection === 'about' && <AboutMe />}
-            {activeSection === 'projects' && <ProjectGallary />}
+            {activeSection === 'projects' && <ProjectGallary isExpanded={isExpanded && (!isMobile)}/>}
             {activeSection === 'transmissions' && <Message />}
             {activeSection === 'network' && <Network />}
             {activeSection === 'archieves' && <Archieves />}

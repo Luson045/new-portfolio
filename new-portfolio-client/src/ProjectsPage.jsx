@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { X } from 'lucide-react';
 
-const ProjectGallery = () => {
+
+const ProjectGallery = (isExpanded) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const modalRef = useRef(null);
   
@@ -71,6 +72,7 @@ const ProjectGallery = () => {
   ];
 
   const TypewriterText = ({ text }) => {
+    //console.log(isExpanded);
     const [displayText, setDisplayText] = useState('');
     
     React.useEffect(() => {
@@ -141,17 +143,21 @@ const ProjectGallery = () => {
       {/* Modal */}
       {selectedProject && (
         <div 
-          className="fixed inset-0 bg-blak/90 flex items-center justify-center z-20 p-4 overflow-y-auto"
+          className={`fixed inset-0 bg-blak/90 flex items-center justify-center z-20 overflow-y-auto
+                     ${isExpanded ? 'md:pl-[250px]' : 'md:pl-[100px]'}`}
           onClick={handleClickOutside}
         >
           <div 
             ref={modalRef}
-            className="bg-blak border-2 border-yelo p-4 w-full max-w-6xl rounded-lg relative backdrop-blur-md shadow-[0_0_30px_rgba(255,255,0,0.2)] my-8"
+            className={`bg-blak border-2 border-yelo p-4 w-full rounded-lg relative 
+                       backdrop-blur-md shadow-[0_0_30px_rgba(255,255,0,0.2)] my-8 mx-4
+                       md:mx-8 lg:mx-12 
+                       ${isExpanded ? 'max-w-4xl' : 'max-w-5xl'}`}
           >
-            {/* Close button moved outside content area and given higher z-index */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute -top-4 -right-4 w-8 h-8 bg-blak border-2 border-yelo rounded-full text-yelo hover:text-yelo/70 z-50 flex items-center justify-center"
+              className="absolute -top-4 -right-4 w-8 h-8 bg-blak border-2 border-yelo rounded-full 
+                         text-yelo hover:text-yelo/70 z-50 flex items-center justify-center"
             >
               <X size={20} />
             </button>
@@ -168,8 +174,8 @@ const ProjectGallery = () => {
                     {selectedProject.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="digital px-3 py-1 text-sm bg-yelo/10 text-yelo border border-yelo/30 rounded-full
-                                whitespace-nowrap hover:bg-yelo/20 transition-colors mb-2"
+                        className="digital px-3 py-1 text-sm bg-yelo/10 text-yelo border border-yelo/30 
+                                 rounded-full whitespace-nowrap hover:bg-yelo/20 transition-colors mb-2"
                       >
                         {tag}
                       </span>
@@ -236,7 +242,6 @@ const ProjectGallery = () => {
           </div>
         </div>
       )}
-
       <style jsx global>{`
         @keyframes twinkle {
           0%, 100% { opacity: 1; }
