@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { X } from 'lucide-react';
 
 const ProjectGallery = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const modalRef = useRef(null);
+  
+  // Handle click outside
+  const handleClickOutside = useCallback((e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      setSelectedProject(null);
+    }
+  }, []);
   
   const projects = [
     {
@@ -132,30 +140,36 @@ const ProjectGallery = () => {
 
       {/* Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 bg-blak/90 flex items-center justify-center z-20 p-4">
-          <div className="bg-blak border-2 border-yelo p-4 max-w-6xl w-full rounded-lg
-                        relative backdrop-blur-md shadow-[0_0_30px_rgba(255,255,0,0.2)]">
+        <div 
+          className="fixed inset-0 bg-blak/90 flex items-center justify-center z-20 p-4 overflow-y-auto"
+          onClick={handleClickOutside}
+        >
+          <div 
+            ref={modalRef}
+            className="bg-blak border-2 border-yelo p-4 w-full max-w-6xl rounded-lg relative backdrop-blur-md shadow-[0_0_30px_rgba(255,255,0,0.2)] my-8"
+          >
+            {/* Close button moved outside content area and given higher z-index */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 text-yelo hover:text-yelo/70"
+              className="absolute -top-4 -right-4 w-8 h-8 bg-blak border-2 border-yelo rounded-full text-yelo hover:text-yelo/70 z-50 flex items-center justify-center"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
             
-            <div className="flex flex-col md:flex-row gap-8 scrollbar-hidden">
+            <div className="flex flex-col lg:flex-row gap-8 max-h-[80vh] lg:max-h-[70vh] overflow-y-auto custom-scrollbar">
               {/* Content Section */}
-              <div className="flex-1">
-                <h2 className="jeditext text-yelo text-3xl mb-4">{selectedProject.title}</h2>
+              <div className="flex-1 min-w-0">
+                <h2 className="jeditext text-yelo text-2xl md:text-3xl mb-4">{selectedProject.title}</h2>
                 <div className="h-1 w-24 bg-yelo mb-6" />
                 
                 {/* Tags Section */}
-                <div className="mb-6 overflow-x-auto custom-scrollbar-x">
-                  <div className="flex gap-2 pb-2">
+                <div className="mb-6">
+                  <div className="flex flex-wrap gap-2">
                     {selectedProject.tags.map((tag, index) => (
                       <span
                         key={index}
                         className="digital px-3 py-1 text-sm bg-yelo/10 text-yelo border border-yelo/30 rounded-full
-                                whitespace-nowrap hover:bg-yelo/20 transition-colors"
+                                whitespace-nowrap hover:bg-yelo/20 transition-colors mb-2"
                       >
                         {tag}
                       </span>
@@ -163,10 +177,10 @@ const ProjectGallery = () => {
                   </div>
                 </div>
                 
-                <div className="digital space-y-2 text-yelo/90">
+                <div className="digital space-y-4 text-yelo/90">
                   <div>
                     <strong className="text-yelo">Description:</strong>
-                    <div className="mt-1 max-h-12 overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="mt-2 max-h-24 md:max-h-32 overflow-y-auto pr-2 custom-scrollbar">
                       <p>
                         <TypewriterText text={selectedProject.description} />
                       </p>
@@ -185,10 +199,11 @@ const ProjectGallery = () => {
                     <span className="ml-2">{selectedProject.date}</span>
                   </div>
                   
-                  <div className="flex gap-4 pt-4">
+                  <div className="flex flex-wrap gap-4 pt-4">
                     <a
                       href={selectedProject.link}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="text-blak bg-yelo px-4 py-2 rounded hover:bg-yelo/80 transition-colors"
                     >
                       View Project
@@ -196,6 +211,7 @@ const ProjectGallery = () => {
                     <a
                       href={selectedProject.repo}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="text-yelo border-2 border-yelo px-4 py-2 rounded hover:bg-yelo/10 transition-colors"
                     >
                       View Repository
@@ -205,13 +221,13 @@ const ProjectGallery = () => {
               </div>
 
               {/* Image Section */}
-              <div className="w-full md:w-1/2 flex items-center justify-center">
-                <div className="relative">
+              <div className="w-full lg:w-1/2 flex items-start justify-center">
+                <div className="relative w-full max-w-xl">
                   <div className="absolute inset-0 bg-yelo/20 backdrop-blur-sm rounded-lg" />
                   <img 
                     src={selectedProject.image}
                     alt={selectedProject.title}
-                    className="relative z-10 rounded-lg border-2 border-yelo/50 w-full h-auto"
+                    className="relative z-10 rounded-lg border-2 border-yelo/50 w-full h-auto object-cover"
                   />
                   <div className="absolute inset-0 shadow-[0_0_15px_rgba(255,255,0,0.2)] rounded-lg" />
                 </div>
