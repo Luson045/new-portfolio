@@ -21,9 +21,9 @@ const AboutMe = () => {
   ];
 
   const certificates = [
-    { name: 'AWS Cloud Practitioner', link: '#' },
+    { name: 'AWS Cloud Practitioner', link: 'javascript:void(0)' },
     { name: 'GSSSOC Top Project Admin', link: 'https://drive.google.com/file/d/1DNoQlPtpZkEGlqenbSyDqqiVergBIKv9/view?usp=sharing' },
-    { name: 'MERN Development', link: '#' },
+    { name: 'MERN Development', link: 'javascript:void(0)' },
     { name: 'PHP Development', link: 'https://drive.google.com/file/d/1ybNhQgcGtgNlpRNXqOKprpK8boRtB5Lh/view?usp=sharing' },
     { name: 'AI for India', link: 'https://drive.google.com/file/d/10pLZeAZ_KQx2LcWRCpYPvcgJUu1_KTrF/view?usp=sharing' },
     { name: 'GDSC Web Jam', link: 'https://drive.google.com/file/d/1iuKt_kNP10GBYHIdqNVu3y0OXC47U5We/view?usp=sharing' },
@@ -32,14 +32,14 @@ const AboutMe = () => {
   ];
 
   const tools = [
-    { name: 'AWS', link: '#' },
-    { name: 'Netlify', link: '#' },
-    { name: 'Vercel', link: '#' },
-    { name: 'Render', link: '#' },
-    { name: 'Google Colab', link: '#' },
-    { name: 'Kaggle', link: '#' },
-    { name: 'Jupyter', link: '#' },
-    { name: 'Docker', link: '#' }
+    { name: 'AWS', link: 'javascript:void(0)' },
+    { name: 'Netlify', link: 'javascript:void(0)' },
+    { name: 'Vercel', link: 'javascript:void(0)' },
+    { name: 'Render', link: 'javascript:void(0)' },
+    { name: 'Google Colab', link: 'javascript:void(0)' },
+    { name: 'Kaggle', link: 'javascript:void(0)' },
+    { name: 'Jupyter', link: 'javascript:void(0)' },
+    { name: 'Docker', link: 'javascript:void(0)' }
   ];
 
   const education = [
@@ -161,7 +161,7 @@ const AboutMe = () => {
                 <span className="text-yelo/50 text-sm">AKA:</span>
                 <span className="text-yelo/80 text-sm font-mono">luson_10</span>
                 <span className="text-yelo/50 text-sm mx-2">|</span>
-                <span className="text-yelo/80 text-sm font-mono">Algo_Jedi</span>
+                <span className="text-yelo/80 text-sm font-mono">Luson045</span>
               </div>
               
               <p className="digital text-yelo/80 mb-6">
