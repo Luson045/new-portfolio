@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*external Fonts*/
+@font-face {
+  font-family: jedi;
+  src: url('/star_jedi/starjedi/Starjhol.ttf');
+}
+@font-face {
+  font-family: jedi2;
+  src: url('/star_jedi/starjedi/Starjedi.ttf');
+}
+@font-face {
+  font-family: digital;
+  src: url('/medodica/medodica/MedodicaRegular.otf');
+}
+
+.digital {
+  font-family: digital;
+}
+
+.title{
+  font-family: "jedi";
+  font-size: xx-large;
+}
+
+.jeditext{
+  font-family: "jedi2";
+}
+.jeditext2{
+  font-family: "jedi";
+}
+
+
+body{
+  background-color: black;
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.scroll-up-animation {
+  animation: scrollUp 30s linear infinite;
+  overflow: hidden;
+  height: 400px;
+  font-family: "jedi2";
+}
+
+@media only screen and (max-width: 600px) {
+  .scroll-up-animation {
+    height: 680px;
+  }
+}
+.animation-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.arrowL {
+  animation: moveOutwardsL 7s ease-out;
+  position: relative;
+}
+.arrowR {
+  animation: moveOutwardsR 7s ease-out;
+  position: relative;
+}
+
+.central-text {
+  animation: expandWidth 7s ease-out;
+  overflow: hidden;
+}
+
+@keyframes moveOutwardsL {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes moveOutwardsR {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes expandWidth {
+  0% {
+    transform: scaleX(0.25);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Hide the scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
